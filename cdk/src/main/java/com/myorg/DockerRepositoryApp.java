@@ -40,6 +40,7 @@ public class DockerRepositoryApp {
 
         // grant pull and push to all users of the account
         ecrRepository.grantPullPush(new AccountPrincipal(accountId));
+        app.synth();
     }
 
 
