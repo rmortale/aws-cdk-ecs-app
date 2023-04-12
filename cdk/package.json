@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bootstrap": "cdk bootstrap --app \"mvn -e -q compile exec:java -Dexec.mainClass=com.myorg.BootstrapApp\"",
-    "repository:deploy": "cdk deploy --app \"mvn -e -q compile exec:java -Dexec.mainClass=com.myorg.DockerRepositoryApp\" --require-approval never",
-    "repository:destroy": "cdk destroy --app \"mvn -e -q compile exec:java -Dexec.mainClass=com.myorg.DockerRepositoryApp\" --force --require-approval never"
+    "bootstrap": "cdk bootstrap --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.BootstrapApp\"",
+    "repository:deploy": "cdk deploy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.DockerRepositoryApp\" --require-approval never",
+    "repository:destroy": "cdk destroy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.DockerRepositoryApp\" --force --require-approval never"
   },
   "author": "",
   "license": "ISC",

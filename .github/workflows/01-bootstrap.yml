@@ -32,6 +32,10 @@ jobs:
         working-directory: cdk
         run: npm install
 
+      - name: Compile cdk project
+        working-directory: cdk
+        run: mvn compile
+
       - name: Deploy CDK bootstrap stack
         working-directory: cdk
         run: npm run bootstrap

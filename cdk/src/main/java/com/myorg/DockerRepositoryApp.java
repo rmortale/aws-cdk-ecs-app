@@ -29,7 +29,7 @@ public class DockerRepositoryApp {
                 .build());
 
         Repository ecrRepository = Repository.Builder.create(dockerRepositoryStack, "ecrRepository")
-                .repositoryName(applicationName + "-Repository")
+                .repositoryName(applicationName + "-repository".toLowerCase())
                 .removalPolicy(RemovalPolicy.DESTROY)
                 .lifecycleRules(Collections.singletonList(LifecycleRule.builder()
                         .rulePriority(1)
