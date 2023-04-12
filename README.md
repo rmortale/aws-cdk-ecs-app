@@ -1,1 +1,1 @@
-# AWS demo app with CDK
+# AWS demo app deployed with CDK (Java)
