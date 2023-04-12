@@ -1,0 +1,15 @@
+{
+  "name": "demo-cdk",
+  "version": "1.0.0",
+  "description": "This is a blank project for CDK development with Java.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bootstrap": "cdk bootstrap --app \"mvn -e -q compile exec:java -Dexec.mainClass=com.myorg.BootstrapApp\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-cdk": "^2.73.0"
+  }
+}
