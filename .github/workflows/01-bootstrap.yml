@@ -36,6 +36,6 @@ jobs:
         working-directory: cdk
         run: npm run bootstrap
 
-      # - name: Deploy Docker registry
-      #   working-directory: cdk
-      #   run: npm run repository:deploy
+      - name: Deploy Docker registry
+        working-directory: cdk
+        run: npm run repository:deploy
