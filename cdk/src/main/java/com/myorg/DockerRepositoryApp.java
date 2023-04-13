@@ -7,29 +7,29 @@ import software.amazon.awscdk.services.iam.AccountPrincipal;
 
 import java.util.Collections;
 
+import static com.myorg.Utils.getContextVar;
+import static com.myorg.Utils.makeEnv;
+
 public class DockerRepositoryApp {
 
     public static void main(String[] args) {
         App app = new App();
 
-        String accountId = (String) app.getNode().tryGetContext("accountId");
-        Validations.requireNonEmpty(accountId, "context variable 'accountId' must not be null");
-
-        String region = (String) app.getNode().tryGetContext("region");
-        Validations.requireNonEmpty(region, "context variable 'region' must not be null");
-
-        String applicationName = (String) app.getNode().tryGetContext("applicationName");
-        Validations.requireNonEmpty(applicationName, "context variable 'applicationName' must not be null");
+        String accountId = getContextVar(app,"accountId");
+        String region = getContextVar(app,"region");
+        String applicationName = getContextVar(app,"applicationName");
+        String stackName = applicationName + "-docker-repository";
+        String stackId = stackName + "-stack";
 
         Environment awsEnvironment = makeEnv(accountId, region);
 
-        Stack dockerRepositoryStack = new Stack(app, "DockerRepositoryStack", StackProps.builder()
-                .stackName(applicationName + "-DockerRepository")
+        Stack dockerRepositoryStack = new Stack(app, stackId, StackProps.builder()
+                .stackName(stackName)
                 .env(awsEnvironment)
                 .build());
 
-        Repository ecrRepository = Repository.Builder.create(dockerRepositoryStack, "ecrRepository")
-                .repositoryName(applicationName + "-repository".toLowerCase())
+        Repository ecrRepository = Repository.Builder.create(dockerRepositoryStack, stackName)
+                .repositoryName(stackName)
                 .removalPolicy(RemovalPolicy.DESTROY)
                 .lifecycleRules(Collections.singletonList(LifecycleRule.builder()
                         .rulePriority(1)
@@ -44,10 +44,5 @@ public class DockerRepositoryApp {
     }
 
 
-    static Environment makeEnv(String account, String region) {
-        return Environment.builder()
-                .account(account)
-                .region(region)
-                .build();
-    }
+
 }

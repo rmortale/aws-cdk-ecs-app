@@ -3,6 +3,7 @@
     "applicationName": "cdk-demo-app",
     "region": "eu-central-1",
     "accountId": "601912882130",
+    "environmentName": "staging",
     "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
     "@aws-cdk/core:checkSecretUsage": true,
     "@aws-cdk/core:target-partitions": [

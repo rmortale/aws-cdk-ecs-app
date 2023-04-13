@@ -4,10 +4,13 @@
   "description": "This is a blank project for CDK development with Java.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "bootstrap": "cdk bootstrap --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.BootstrapApp\"",
+    "repository:synth": "cdk synth --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.DockerRepositoryApp\"",
     "repository:deploy": "cdk deploy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.DockerRepositoryApp\" --require-approval never",
-    "repository:destroy": "cdk destroy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.DockerRepositoryApp\" --force --require-approval never"
+    "repository:destroy": "cdk destroy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.DockerRepositoryApp\" --force --require-approval never",
+    "ecscluster:synth": "cdk synth --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.VpcEcsClusterApp\"",
+    "ecscluster:deploy": "cdk deploy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.VpcEcsClusterApp\" --require-approval never",
+    "ecscluster:destroy": "cdk destroy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.VpcEcsClusterApp\" --force --require-approval never"
   },
   "author": "",
   "license": "ISC",

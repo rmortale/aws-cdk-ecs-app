@@ -5,6 +5,8 @@ import software.amazon.awscdk.Environment;
 import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
 
+import static com.myorg.Utils.makeEnv;
+
 /**
  * This is an empty app that we can use for bootstrapping the CDK with the "cdk bootstrap" command.
  * We could do this with other apps, but this would require us to enter all the parameters
@@ -16,10 +18,10 @@ public class BootstrapApp {
         App app = new App();
 
         String region = (String) app.getNode().tryGetContext("region");
-        Validations.requireNonEmpty(region, "context variable 'region' must not be null");
+        Utils.requireNonEmpty(region, "context variable 'region' must not be null");
 
         String accountId = (String) app.getNode().tryGetContext("accountId");
-        Validations.requireNonEmpty(accountId, "context variable 'accountId' must not be null");
+        Utils.requireNonEmpty(accountId, "context variable 'accountId' must not be null");
 
         Environment awsEnvironment = makeEnv(accountId, region);
 
@@ -28,13 +30,6 @@ public class BootstrapApp {
                 .build());
 
         app.synth();
-    }
-
-    static Environment makeEnv(String account, String region) {
-        return Environment.builder()
-                .account(account)
-                .region(region)
-                .build();
     }
 
 }
