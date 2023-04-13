@@ -34,7 +34,7 @@ jobs:
 
       - name: Compile cdk project
         working-directory: cdk
-        run: mvn compile
+        run: mvn clean compile
 
       - name: Deploy CDK bootstrap stack
         working-directory: cdk

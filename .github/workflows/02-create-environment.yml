@@ -35,6 +35,10 @@ jobs:
         working-directory: cdk
         run: npm install
 
+      - name: Compile cdk project
+        working-directory: cdk
+        run: mvn clean compile
+
       - name: Deploy network stack
         working-directory: cdk
         run: npm run ecscluster:deploy -- -c environmentName=${{ github.event.inputs.environmentName }}
