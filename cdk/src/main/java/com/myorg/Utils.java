@@ -22,7 +22,7 @@ public class Utils {
 
     public static String getContextVar(App app, String key) {
         String value = (String) app.getNode().tryGetContext(key);
-        requireNonEmpty(value, "context variable " + key + "must not be null");
+        requireNonEmpty(value, "context variable " + key + " must not be null");
         return value.toLowerCase();
     }
 }

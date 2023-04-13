@@ -4,6 +4,7 @@
     "region": "eu-central-1",
     "accountId": "601912882130",
     "environmentName": "staging",
+    "dockerImageUrl": "docker.io/stratospheric/todo-app-v1:latest",
     "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
     "@aws-cdk/core:checkSecretUsage": true,
     "@aws-cdk/core:target-partitions": [

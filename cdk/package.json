@@ -10,7 +10,10 @@
     "repository:destroy": "cdk destroy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.DockerRepositoryApp\" --force --require-approval never",
     "ecscluster:synth": "cdk synth --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.VpcEcsClusterApp\"",
     "ecscluster:deploy": "cdk deploy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.VpcEcsClusterApp\" --require-approval never",
-    "ecscluster:destroy": "cdk destroy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.VpcEcsClusterApp\" --force --require-approval never"
+    "ecscluster:destroy": "cdk destroy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.VpcEcsClusterApp\" --force --require-approval never",
+    "service:deploy": "cdk deploy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.ServiceApp\" --require-approval never",
+    "service:destroy": "cdk destroy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.ServiceApp\" --force --require-approval never",
+    "service:synth": "cdk synth --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.ServiceApp\""
   },
   "author": "",
   "license": "ISC",
