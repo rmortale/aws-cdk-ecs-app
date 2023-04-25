@@ -13,7 +13,10 @@
     "ecscluster:destroy": "cdk destroy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.VpcEcsClusterApp\" --force --require-approval never",
     "service:deploy": "cdk deploy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.ServiceApp\" --require-approval never",
     "service:destroy": "cdk destroy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.ServiceApp\" --force --require-approval never",
-    "service:synth": "cdk synth --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.ServiceApp\""
+    "service:synth": "cdk synth --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.ServiceApp\"",
+    "allinoneservice:deploy": "cdk deploy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.AllInOneServiceApp\" --require-approval never",
+    "allinoneservice:destroy": "cdk destroy --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.AllInOneServiceApp\" --force --require-approval never",
+    "allinoneservice:synth": "cdk synth --app \"mvn -e -q exec:java -Dexec.mainClass=com.myorg.AllInOneServiceApp\""
   },
   "author": "",
   "license": "ISC",

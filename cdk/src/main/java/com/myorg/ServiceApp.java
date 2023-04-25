@@ -3,8 +3,7 @@ package com.myorg;
 import software.amazon.awscdk.*;
 import software.amazon.awscdk.services.ec2.CfnSecurityGroup;
 import software.amazon.awscdk.services.ec2.CfnSecurityGroupIngress;
-import software.amazon.awscdk.services.ecs.CfnService;
-import software.amazon.awscdk.services.ecs.CfnTaskDefinition;
+import software.amazon.awscdk.services.ecs.*;
 import software.amazon.awscdk.services.iam.*;
 import software.amazon.awscdk.services.logs.LogGroup;
 import software.amazon.awscdk.services.logs.RetentionDays;
@@ -87,16 +86,30 @@ public class ServiceApp {
                 .stopTimeout(2)
                 .build();
 
-        CfnTaskDefinition taskDefinition = CfnTaskDefinition.Builder.create(serviceStack, "taskDefinition")
-                // skipped family
-                .cpu(String.valueOf(256))
-                .memory(String.valueOf(512))
-                .networkMode("awsvpc")
-                .requiresCompatibilities(singletonList("FARGATE"))
-                .executionRoleArn(ecsTaskExecutionRole.getRoleArn())
-                .taskRoleArn(ecsTaskRole.getRoleArn())
-                .containerDefinitions(singletonList(container))
+//        CfnTaskDefinition taskDefinition = CfnTaskDefinition.Builder.create(serviceStack, "taskDefinition")
+//                // skipped family
+//                .cpu(String.valueOf(256))
+//                .memory(String.valueOf(512))
+//                .networkMode("awsvpc")
+//                .requiresCompatibilities(singletonList("FARGATE"))
+//                .executionRoleArn(ecsTaskExecutionRole.getRoleArn())
+//                .taskRoleArn(ecsTaskRole.getRoleArn())
+//                .containerDefinitions(singletonList(container))
+//                .build();
+
+        FargateTaskDefinition taskDefinition = FargateTaskDefinition.Builder.create(serviceStack, "taskDefinition")
+                .memoryLimitMiB(512)
+                .cpu(256)
                 .build();
+        ContainerDefinition fgcontainer = taskDefinition.addContainer("WebContainer", ContainerDefinitionOptions.builder()
+                // Use an image from DockerHub
+                .image(ContainerImage.fromRegistry("amazon/amazon-ecs-sample"))
+                .build());
+
+//        FargateService service = FargateService.Builder.create(serviceStack, "Service")
+//                .cluster(cluster)
+//                .taskDefinition(taskDefinition)
+//                .build();
 
         CfnSecurityGroup ecsSecurityGroup = CfnSecurityGroup.Builder.create(serviceStack, "ecsSecurityGroup")
                 .vpcId(VpcEcsClusterApp.getVpcIdFromParameterStore(serviceStack, environmentName))
@@ -125,7 +138,7 @@ public class ServiceApp {
                         .minimumHealthyPercent(50)
                         .build())
                 .desiredCount(2)
-                .taskDefinition(taskDefinition.getRef())
+                .taskDefinition(taskDefinition.getTaskDefinitionArn())
 
 //                .loadBalancers(singletonList(CfnService.LoadBalancerProperty.builder()
 //                        .containerName(containerName(applicationEnvironment))
