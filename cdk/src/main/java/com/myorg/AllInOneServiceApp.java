@@ -1,23 +1,16 @@
 package com.myorg;
 
-import org.bukkit.event.Listener;
-import software.amazon.awscdk.*;
-import software.amazon.awscdk.services.ec2.*;
+import software.amazon.awscdk.App;
+import software.amazon.awscdk.Environment;
+import software.amazon.awscdk.Stack;
+import software.amazon.awscdk.StackProps;
+import software.amazon.awscdk.services.ec2.IVpc;
+import software.amazon.awscdk.services.ec2.Vpc;
+import software.amazon.awscdk.services.ec2.VpcLookupOptions;
 import software.amazon.awscdk.services.ecs.*;
-import software.amazon.awscdk.services.elasticloadbalancing.LoadBalancer;
-import software.amazon.awscdk.services.elasticloadbalancingv2.ListenerAction;
-import software.amazon.awscdk.services.globalaccelerator.ListenerOptions;
-import software.amazon.awscdk.services.globalaccelerator.PortRange;
-import software.amazon.awscdk.services.iam.*;
-import software.amazon.awscdk.services.logs.LogGroup;
-import software.amazon.awscdk.services.logs.RetentionDays;
-
-import java.util.Arrays;
-import java.util.Map;
 
 import static com.myorg.Utils.getContextVar;
 import static com.myorg.Utils.makeEnv;
-import static java.util.Collections.singletonList;
 
 public class AllInOneServiceApp {
 
